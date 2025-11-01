@@ -5,8 +5,16 @@ import { Sparkles, BookOpen, Users, BarChart3, LogOut, ShoppingCart, Plus, Trash
 // Supabase SDK Import
 // =====================================================
 import { createClient } from '@supabase/supabase-js';
+
+// =====================================================
+// Supabase Configuration  
+// =====================================================
+// Supabase URL and Anonymous Key (Environment Variables)
+const SUPABASE_URL = process.env.REACT_APP_SUPABASE_URL || 'https://tjhflgjzzphvmddrmjhj.supabase.co';
+const SUPABASE_ANON_KEY = process.env.REACT_APP_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqaGZsZ2p6enBodm1kZHJtamhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwMjEyNzksImV4cCI6MjA0OTU5NzI3OX0.EGdZPu6WFJ6dL9l6P6WmMvC6YX5WwZqE2tWnVnS9oZ8';
+
 // Edge Functions API Base URL
-const SUPABASE_FUNCTIONS_URL = 'https://tjhflgjzzphvmddrmjhj.supabase.co/functions/v1';
+const SUPABASE_FUNCTIONS_URL = process.env.REACT_APP_SUPABASE_FUNCTIONS_URL || 'https://tjhflgjzzphvmddrmjhj.supabase.co/functions/v1';
 
 // Helper function to call Supabase Edge Functions - Global scope
 const callSupabaseFunction = async (functionName, data) => {
@@ -34,11 +42,6 @@ const callSupabaseFunction = async (functionName, data) => {
 // Supabase Configuration
 // =====================================================
 // Supabase URL and Anonymous Key (Environment Variables)
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || 'https://tjhflgjzzphvmddrmjhj.supabase.co';
-const SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRqaGZsZ2p6enBodm1kZHJtamhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQwMjEyNzksImV4cCI6MjA0OTU5NzI3OX0.EGdZPu6WFJ6dL9l6P6WmMvC6YX5WwZqE2tWnVnS9oZ8';
-
-// Edge Functions API Base URL
-const SUPABASE_FUNCTIONS_URL = import.meta.env.VITE_SUPABASE_FUNCTIONS_URL || 'https://tjhflgjzzphvmddrmjhj.supabase.co/functions/v1';
 
 // Khởi tạo Supabase Client
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -61,7 +64,7 @@ const formatCurrency = (amount) => {
 
 // Hàm gọi Gemini API
 const callGeminiAPI = async (prompt) => {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY; // API key từ environment variables
+  const apiKey = process.env.REACT_APP_GEMINI_API_KEY; // API key từ environment variables
   if (!apiKey) {
     return "Gemini API key chưa được cấu hình.";
   }
